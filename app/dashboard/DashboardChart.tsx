@@ -1,6 +1,5 @@
 "use client";
 
-import type { ChartOptions } from "chart.js";
 import "chart.js/auto";
 import { Line } from "react-chartjs-2";
 
@@ -50,7 +49,7 @@ const chartData = {
   ],
 };
 
-const chartOptions: ChartOptions<"line"> = {
+const chartOptions = {
   responsive: true,
   maintainAspectRatio: false,
   plugins: {
@@ -76,7 +75,8 @@ const chartOptions: ChartOptions<"line"> = {
       ticks: {
         color: "#1e3a8a",
         font: { size: 11 },
-        callback: (value) => "$" + (typeof value === "number" ? value : Number(value)),
+        callback: (value: string | number) =>
+          "$" + (typeof value === "number" ? value : Number(value)),
       },
     },
   },
@@ -101,7 +101,7 @@ export function DashboardChart() {
         </span>
       </div>
       <div className="h-[220px] w-full">
-        <Line data={chartData} options={chartOptions} />
+        <Line data={chartData} options={chartOptions as any} />
       </div>
     </div>
   );
