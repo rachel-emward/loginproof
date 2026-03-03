@@ -99,7 +99,8 @@ export function DashboardChart() {
         </span>
       </div>
       <div className="h-[220px] w-full">
-        <Line data={chartData} options={chartOptions} />
+        {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
+        <Line data={chartData} options={chartOptions as any} />
       </div>
     </div>
   );
