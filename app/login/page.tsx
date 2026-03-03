@@ -1,12 +1,12 @@
  "use client";
 
- import { FormEvent, useState } from "react";
+ import { FormEvent, Suspense, useState } from "react";
  import Link from "next/link";
  import { useRouter, useSearchParams } from "next/navigation";
  import { supabaseBrowserClient } from "@/lib/supabase/client";
  import { sanitizeAuthError } from "@/lib/auth-errors";
 
- export default function LoginPage() {
+ function LoginForm() {
    const router = useRouter();
    const searchParams = useSearchParams();
    const redirectTo = searchParams.get("redirectTo") || "/dashboard";
@@ -152,4 +152,40 @@
       </section>
     </main>
   );
+ }
+
+ export default function LoginPage() {
+   return (
+     <Suspense
+       fallback={
+         <main className="flex min-h-screen bg-amber-50 text-blue-950">
+           <section className="hidden min-h-screen flex-1 flex-col justify-between border-r border-blue-200 bg-white px-16 py-14 lg:flex">
+             <div className="space-y-6 text-left">
+               <p className="-ml-[0.12em] text-xs font-semibold uppercase tracking-[0.25em] text-amber-600">
+                 Chatalaine Investments
+               </p>
+               <h1 className="max-w-md font-serif text-4xl font-semibold leading-tight text-blue-950">
+                 Client access to discretionary strategies and private mandates.
+               </h1>
+               <p className="max-w-sm text-sm text-blue-900">
+                 Restricted portal. Activity is monitored and recorded. Unauthorized
+                 use is strictly prohibited.
+               </p>
+             </div>
+             <div className="space-y-1 text-xs text-blue-800">
+               <p>New York · London · Singapore</p>
+               <p className="text-[10px] uppercase tracking-[0.2em] text-blue-800">
+                 © {new Date().getFullYear()} Chatalaine Investments
+               </p>
+             </div>
+           </section>
+           <section className="flex min-h-screen flex-1 items-center justify-center bg-amber-50 px-6 py-12 sm:px-10">
+             <div className="h-64 w-64 animate-pulse rounded-lg bg-blue-100" />
+           </section>
+         </main>
+       }
+     >
+       <LoginForm />
+     </Suspense>
+   );
  }

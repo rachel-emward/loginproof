@@ -75,7 +75,7 @@ const chartOptions = {
       ticks: {
         color: "#1e3a8a",
         font: { size: 11 },
-        callback: (value: number) => "$" + value,
+        callback: (value: string | number) => "$" + value,
       },
     },
   },
