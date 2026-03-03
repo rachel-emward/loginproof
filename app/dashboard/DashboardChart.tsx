@@ -75,8 +75,6 @@ const chartOptions = {
       ticks: {
         color: "#1e3a8a",
         font: { size: 11 },
-        callback: (value: string | number) =>
-          "$" + (typeof value === "number" ? value : Number(value)),
       },
     },
   },
@@ -101,7 +99,7 @@ export function DashboardChart() {
         </span>
       </div>
       <div className="h-[220px] w-full">
-        <Line data={chartData} options={chartOptions as never} />
+        <Line data={chartData} options={chartOptions} />
       </div>
     </div>
   );
