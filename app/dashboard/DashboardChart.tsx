@@ -101,7 +101,7 @@ export function DashboardChart() {
         </span>
       </div>
       <div className="h-[220px] w-full">
-        <Line data={chartData} options={chartOptions as any} />
+        <Line data={chartData} options={chartOptions as never} />
       </div>
     </div>
   );
